@@ -12,6 +12,7 @@ export function Header() {
           >
             NagorikDB
           </Link>
+          <Link href="/watchlist" className='dark:text-gray-700 text-white'>WatchList</Link>
           <ThemeToggle />
         </div>
       </nav>

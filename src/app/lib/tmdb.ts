@@ -14,3 +14,17 @@ export async function fetchMovie(id: string): Promise<Movie> {
   )
   return res.json()
 }
+
+export async function fetchRecommendations(id: string): Promise<Movie[]> {
+  const res = await fetch(
+    `${TMDB_BASE_URL}/movie/${id}/recommendations?api_key=${TMDB_API_KEY}`
+  );
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch recommendations');
+  }
+
+  const data = await res.json();
+  return data.results; // Return the array of recommended movies
+}
+

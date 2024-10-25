@@ -1,6 +1,8 @@
 
+
 import Image from 'next/image'
-import { fetchMovie } from '../../lib/tmdb'
+import { fetchMovie, fetchRecommendations } from '../../lib/tmdb'
+import { WatchlistButton } from '@/app/components/WatchlistButton';
 
 export async function generateMetadata(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
@@ -15,6 +17,11 @@ export default async function MoviePage(props: { params: Promise<{ id: string }>
   const params = await props.params;
 
   const movie = await fetchMovie(params?.id)
+
+  // Fetch recommendations
+  const recommendations = await fetchRecommendations(params?.id); // New line to fetch recommendations
+
+
 
   return (
     <div className="relative min-h-screen">
@@ -61,7 +68,29 @@ export default async function MoviePage(props: { params: Promise<{ id: string }>
             </div>
           </div>
         </div>
+
+        <WatchlistButton movie={movie} />
+        {/* Recommendations Section */}
+      <div className="mt-16">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Recommendations:</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {recommendations.map((rec) => (
+              <div key={rec.id} className="relative aspect-[2/3]">
+                <Image
+                  src={`https://image.tmdb.org/t/p/w500${rec.poster_path}`}
+                  alt={rec.title}
+                  fill
+                  className="rounded-lg object-cover"
+                />
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{rec.title}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+        {/* End of Recommendations Section */}
       </div>
+
+      
     </div>
   )
 }
