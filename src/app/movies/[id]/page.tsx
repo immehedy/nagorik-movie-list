@@ -19,6 +19,7 @@ export default async function MoviePage(props: { params: Promise<{ id: string }>
   return (
     <div className="relative min-h-screen">
       <div className="absolute inset-0">
+        
         <Image
           src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
           alt={movie.title}
@@ -26,6 +27,7 @@ export default async function MoviePage(props: { params: Promise<{ id: string }>
           className="object-cover opacity-30"
           priority
         />
+        
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

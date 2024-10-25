@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import { fetchMovies } from './lib/tmdb'
 import { MovieList } from './components/MovieList'
+import MovieSkeletonGrid from './components/MovieSkeletonGrid'
 
 export const revalidate = 3600 // ISR - revalidate every hour
 
@@ -12,7 +13,7 @@ export default async function Home() {
       <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
         Popular Movies
       </h1>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<MovieSkeletonGrid/>}>
         <MovieList initialMovies={initialMovies} />
       </Suspense>
     </div>
