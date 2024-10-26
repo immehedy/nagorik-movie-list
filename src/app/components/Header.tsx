@@ -8,9 +8,9 @@ export function Header() {
         <div className="flex justify-between h-16 items-center">
           <Link 
             href="/"
-            className="text-red-600 text-2xl font-bold"
+            className="text-red-400 text-2xl font-bold"
           >
-            NagorikDB
+            Nagorik Tech
           </Link>
           <div className='flex items-center gap-x-8'>
           <Link href="/watchlist" className='dark:text-gray-700 text-white font-bold transform transition duration-300 hover:scale-105'>WatchList</Link>
