@@ -10,14 +10,11 @@ export function WatchlistButton({ movie }: { movie: Movie }) {
   const isWatchlisted = isInWatchlist(movie.id)
 
   const handleToggleWatchlist = async () => {
-    console.log("hello")
     try {
       setIsPending(true)
       
       // Update server state
       const result = await toggleWatchlistServer(movie);
-
-      console.log({result})
       
       // Update client state
       if (result.success) {
@@ -38,10 +35,10 @@ export function WatchlistButton({ movie }: { movie: Movie }) {
     <button
       onClick={handleToggleWatchlist}
       disabled={isPending}
-      className={`px-4 py-2 rounded-lg transition-colors ${
+      className={`mt-4 px-4 py-2 rounded-lg transition-colors ${
         isWatchlisted 
-          ? 'bg-red-500 hover:bg-red-600' 
-          : 'bg-blue-500 hover:bg-blue-600'
+          ? 'bg-red-300 hover:bg-red-200' 
+          : 'bg-blue-300 hover:bg-blue-200'
       }`}
     >
       {isPending ? 'Loading...' : isWatchlisted ? 'Remove from Watchlist' : 'Add to Watchlist'}
